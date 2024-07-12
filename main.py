@@ -2,7 +2,6 @@ from typing import Union
  
 from fastapi import FastAPI, HTTPException
 
-from flask import Flask, request, jsonify
 from pydantic import BaseModel
 import face_recognition
 import base64
@@ -43,7 +42,7 @@ def compare_faces(data: ImageData):
     try:
         image1 = decode_base64_image(image1_base64)
         image2 = decode_base64_image(image2_base64)
-        
+
         image1_encoding = face_recognition.face_encodings(image1)
         image2_encoding = face_recognition.face_encodings(image2)
 
