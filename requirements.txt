@@ -34,6 +34,6 @@ uvicorn==0.30.1
 watchfiles==0.22.0
 websockets==12.0
 face_recognition
-opencv-python
+opencv-python-headless
 numpy
 dlib
