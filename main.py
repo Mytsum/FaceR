@@ -1,7 +1,6 @@
 from typing import Union
  
 from fastapi import FastAPI, HTTPException
-
 from pydantic import BaseModel
 import face_recognition
 import base64

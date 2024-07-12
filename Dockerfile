@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-dev \
     libboost-python-dev \
     libboost-thread-dev \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     wget
 
 # Install dlib
