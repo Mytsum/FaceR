@@ -32,6 +32,12 @@ def read_root(data: ImageData):
     image2_base64 = data.image2_base64
     return {"message1": image1_base64,"message2": image2_base64}
 
+
+@app.post("/compare_faces")
+def compare_faces(data: ImageData):
+    image1_base64 = data.image1_base64
+    image2_base64 = data.image2_base64
+    return {"status": 200,"image1_base64": image1_base64,"image2_base64": image2_base64}
 # @app.post("/compare_faces")
 # def compare_faces(data: ImageData):
 #     image1_base64 = data.image1_base64
