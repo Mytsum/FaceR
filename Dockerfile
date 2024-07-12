@@ -25,9 +25,5 @@ RUN pip install -r requirements.txt
 COPY . /app
 WORKDIR /app
 
-# Entry point script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Run the entry point script
-ENTRYPOINT ["/entrypoint.sh"]
+# Run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
