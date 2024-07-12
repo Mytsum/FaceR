@@ -33,36 +33,36 @@ def read_root(data: ImageData):
     return {"message1": image1_base64,"message2": image2_base64}
 
 
-@app.post("/compare_faces")
-def compare_faces(data: ImageData):
-    image1_base64 = data.image1_base64
-    image2_base64 = data.image2_base64
-    return {"status": 200,"image1_base64": image1_base64,"image2_base64": image2_base64}
 # @app.post("/compare_faces")
 # def compare_faces(data: ImageData):
 #     image1_base64 = data.image1_base64
 #     image2_base64 = data.image2_base64
-#     if not image1_base64 or not image2_base64:
-#         raise HTTPException(status_code=400, detail="Please provide both image1_base64 and image2_base64")
+#     return {"status": 200,"image1_base64": image1_base64,"image2_base64": image2_base64}
+@app.post("/compare_faces")
+def compare_faces(data: ImageData):
+    image1_base64 = data.image1_base64
+    image2_base64 = data.image2_base64
+    if not image1_base64 or not image2_base64:
+        raise HTTPException(status_code=400, detail="Please provide both image1_base64 and image2_base64")
 
-#     try:
-#         image1 = decode_base64_image(image1_base64)
-#         image2 = decode_base64_image(image2_base64)
+    try:
+        image1 = decode_base64_image(image1_base64)
+        image2 = decode_base64_image(image2_base64)
 
-#         image1_encoding = face_recognition.face_encodings(image1)
-#         image2_encoding = face_recognition.face_encodings(image2)
+        image1_encoding = face_recognition.face_encodings(image1)
+        image2_encoding = face_recognition.face_encodings(image2)
 
-#         if not image1_encoding or not image2_encoding:
-#             raise HTTPException(status_code=400, detail="No faces found in one of the images")
+        if not image1_encoding or not image2_encoding:
+            raise HTTPException(status_code=400, detail="No faces found in one of the images")
 
-#         image1_encoding = image1_encoding[0]
-#         image2_encoding = image2_encoding[0]
-#         results = face_recognition.compare_faces([image1_encoding], image2_encoding)
-#         face_distance = face_recognition.face_distance([image1_encoding], image2_encoding)[0]
+        image1_encoding = image1_encoding[0]
+        image2_encoding = image2_encoding[0]
+        results = face_recognition.compare_faces([image1_encoding], image2_encoding)
+        face_distance = face_recognition.face_distance([image1_encoding], image2_encoding)[0]
 
-#         match = bool(results[0])
-#         confidence = 1 - face_distance  # Confidence level
+        match = bool(results[0])
+        confidence = 1 - face_distance  # Confidence level
 
-#         return {"match": match, "confidence": confidence}
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
+        return {"match": match, "confidence": confidence}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
