@@ -5,7 +5,6 @@ from pydantic import BaseModel
 import face_recognition
 import base64
 import numpy as np
-import cv2
 
 app = FastAPI()
 
@@ -13,18 +12,18 @@ class ImageData(BaseModel):
     image1_base64: str
     image2_base64: str
 
-def decode_base64_image(base64_string):
-    try:
-        img_data = base64.b64decode(base64_string)
-        np_array = np.frombuffer(img_data, np.uint8)
-        image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
-        if image is None:
-            return None
-        if len(image.shape) != 3 or image.shape[2] != 3:
-            return None
-        return image
-    except Exception as e:
-        return None
+# def decode_base64_image(base64_string):
+#     try:
+#         img_data = base64.b64decode(base64_string)
+#         np_array = np.frombuffer(img_data, np.uint8)
+#         image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+#         if image is None:
+#             return None
+#         if len(image.shape) != 3 or image.shape[2] != 3:
+#             return None
+#         return image
+#     except Exception as e:
+#         return None
 
 
 @app.post("/")
