@@ -1,5 +1,3 @@
-from typing import Union
- 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import face_recognition
@@ -26,11 +24,9 @@ def decode_base64_image(base64_string):
         return None
 
 
-@app.post("/")
-def read_root(data: ImageData):
-    image1_base64 = data.image1_base64
-    image2_base64 = data.image2_base64
-    return {"message1": image1_base64,"message2": image2_base64}
+@app.get("/")
+def read_root():
+    return {"status": "Hi! this is face recognition app."}
 
 
 # @app.post("/compare_faces")
