@@ -26,7 +26,7 @@ def decode_base64_image(base64_string):
 
 @app.get("/")
 def read_root():
-    return {"status": "Hi! this is face recognition app."}
+    return {"status": "Hi! this is face recognition app. IO"}
 
 
 # @app.post("/compare_faces")
